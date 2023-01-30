@@ -68,7 +68,7 @@ public class DriveTrain extends SubsystemBase {
 
   public void arcadeDrive(Joystick stick) 
   {
-    this.DIFF_DRIVE.arcadeDrive(stick.getY(), -stick.getTwist(), false);
+    this.DIFF_DRIVE.arcadeDrive(stick.getY(), -stick.getTwist() * 0.4, false);
   }
 
   @Override
