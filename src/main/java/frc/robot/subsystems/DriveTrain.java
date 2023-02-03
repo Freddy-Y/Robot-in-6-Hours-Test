@@ -30,6 +30,7 @@ public class DriveTrain extends SubsystemBase {
 
   public Pigeon2 gyro = new Pigeon2(0);
   private final double rollDeadband = 1; // for comp 2.5
+  private final double yawDeadband = 2;
  
 
   
@@ -91,9 +92,15 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void autoBalance() {
+    
+    // Finds the roll, yaw and pitch values from the gyro
+
     double roll = gyro.getRoll();
-    double yaw = Math.abs(gyro.getYaw() % 360);
+    double yaw = Math.round(gyro.getYaw() / 360);
+    // double yaw = Math.abs(gyro.getYaw() % 360);
     double pitch = gyro.getPitch();
+
+    // Drives up until the robot is level, aka the charging station is engaged
 
     while (Math.abs(roll) <= rollDeadband) { 
       roll = gyro.getRoll();                                       // While the robot is level
@@ -103,7 +110,7 @@ public class DriveTrain extends SubsystemBase {
       roll = gyro.getRoll();                                    // At this point, the robot will be at an angle. While it remains at an angle:
       DIFF_DRIVE.arcadeDrive(-0.4, 0);                                    // Drive forward
     }
-    return;                   // At this point, the robot should be level agaiN
+    return;                   // At this point, the robot should be level again
 
 
     // while roll == 0

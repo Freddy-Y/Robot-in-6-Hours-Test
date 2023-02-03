@@ -54,7 +54,7 @@ public class BalanceCommand implements Command
     // RobotContainer.m_driveTrain.driveStraight(drivePower);
 
     RobotContainer.m_driveTrain.driveStraight(-balancer.calculate(RobotContainer.m_driveTrain.getRoll()));
-      System.out.println();
+    System.out.println();
     // System.out.println("Current Angle" + currentAngle);
     // System.out.println("Error " + error);
     // System.out.println("Drive Power " + drivePower);
